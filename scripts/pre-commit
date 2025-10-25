@@ -1,0 +1,23 @@
+#!/bin/bash
+echo "🔍 Running pre-commit checks..."
+
+./gradlew compileJava --quiet
+if [ $? -ne 0 ]; then
+  echo "❌ Compile failed. Commit aborted."
+  exit 1
+fi
+
+./gradlew spotlessCheck --quiet
+if [ $? -ne 0 ]; then
+  echo "❌ Code style violations found. Commit aborted."
+  exit 1
+fi
+
+./gradlew test --quiet
+if [ $? -ne 0 ]; then
+  echo "❌ Unit tests failed. Commit aborted."
+  exit 1
+fi
+
+echo "✅ Pre-commit checks passed!"
+exit 0
