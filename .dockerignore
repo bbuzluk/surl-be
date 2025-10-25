@@ -1,0 +1,39 @@
+# Gradle files
+.gradle/
+**/build/
+!build/libs/*.jar
+
+# IDE files
+.idea/
+*.iws
+*.ipr
+.vscode/
+
+# Git files
+.git/
+.gitignore
+
+# Logs
+*.log
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Docker files
+.docker/
+Dockerfile
+docker-compose.yml
+.env
+
+# Test files
+**/test/
+# Misc
+README.md
+CHANGELOG.md
+*.md
+.editorconfig
+
+# Other
+scripts/
+.github/
