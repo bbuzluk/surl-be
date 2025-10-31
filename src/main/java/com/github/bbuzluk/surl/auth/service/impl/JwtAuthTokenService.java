@@ -61,19 +61,21 @@ public class JwtAuthTokenService implements AuthTokenService {
       return authToken;
     }
 
-    try {
-      AuthToken parsedToken = parseJwtToken(token);
+    AuthToken parsedToken = parseJwtToken(token);
+    if (parsedToken != null) {
       cache.put(token, parsedToken);
-      return parsedToken;
-    } catch (Exception e) {
-      return null;
     }
+    return parsedToken;
   }
 
   private AuthToken parseJwtToken(String token) {
-    Claims payload = getPayload(token);
-    Date expiration = payload.getExpiration();
-    return new AuthToken(payload.getSubject(), token, expiration.toInstant());
+    try {
+      Claims payload = getPayload(token);
+      Date expiration = payload.getExpiration();
+      return new AuthToken(payload.getSubject(), token, expiration.toInstant());
+    } catch (Exception e) {
+      return null;
+    }
   }
 
   private Claims getPayload(String token) throws JwtException, IllegalArgumentException {
