@@ -50,13 +50,14 @@ public class JwtAuthTokenService implements AuthTokenService {
 
   @Override
   public boolean isValid(String token) {
-    return get(token) != null;
+    AuthToken authToken = get(token);
+    return authToken != null && authToken.isValid();
   }
 
   @Override
   public AuthToken get(String token) {
     AuthToken authToken = cache.getIfPresent(token);
-    if (authToken != null && authToken.isValid()) {
+    if (authToken != null) {
       return authToken;
     }
 
