@@ -1,11 +1,14 @@
 package com.github.bbuzluk.surl.auth.data;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
 public record AuthToken(String username, String token, Instant expiration, boolean isValid) {
   public AuthToken(String username, String token, Instant expiration) {
-    this(username, token, expiration, true);
+
+    this(requireNonNull(username), requireNonNull(token), requireNonNull(expiration), true);
   }
 
   public AuthToken(String username, String token) {
@@ -16,7 +19,7 @@ public record AuthToken(String username, String token, Instant expiration, boole
     return new AuthToken(this.username, this.token, this.expiration, false);
   }
 
-  public boolean isValidToken() {
+  public boolean isValid() {
     return isValid && !isExpired();
   }
 
