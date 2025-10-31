@@ -44,7 +44,7 @@ public class JwtAuthTokenService implements AuthTokenService {
     return authToken;
   }
 
-  private String createJwtToken(String subject, Date expiration) {
+  protected String createJwtToken(String subject, Date expiration) {
     return Jwts.builder().subject(subject).expiration(expiration).signWith(secretKey).compact();
   }
 
