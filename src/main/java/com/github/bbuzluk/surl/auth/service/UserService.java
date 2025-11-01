@@ -24,9 +24,9 @@ public class UserService implements UserDetailsService {
     throw new UsernameNotFoundException("User with username " + username + " not found");
   }
 
-  public void createUser(CreateUserRequest user) {
-    String encodedPassword = passwordEncoder.encode(user.password());
-    User newUser = User.from(user.username(), encodedPassword, user.email());
+  public void createUser(CreateUserRequest request) {
+    String encodedPassword = passwordEncoder.encode(request.password());
+    User newUser = User.from(request.username(), encodedPassword, request.email());
     userRepository.save(newUser);
   }
 }
