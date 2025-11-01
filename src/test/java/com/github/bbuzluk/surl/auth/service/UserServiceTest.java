@@ -5,25 +5,23 @@ import static org.mockito.Mockito.when;
 
 import com.github.bbuzluk.surl.auth.data.entity.User;
 import com.github.bbuzluk.surl.auth.data.repository.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+@ExtendWith(MockitoExtension.class)
 class UserServiceTest {
   @InjectMocks UserService userService;
   @Mock UserRepository userRepository;
 
-  @BeforeEach
-  void setUp() {
-    MockitoAnnotations.openMocks(this);
-  }
-
   @Test
-  void loadUserByUsername() {
+  @DisplayName("loadUserByUsername should return UserDetails when user is found")
+  void loadUserByUsername_when_userFound() {
     when(userRepository.findByUsername("testuser"))
         .thenReturn(User.from("testuser", "password", "user@mail.com"));
     UserDetails user = userService.loadUserByUsername("testuser");
@@ -36,7 +34,8 @@ class UserServiceTest {
   }
 
   @Test
-  void loadUserByUsername_UserNotFound() {
+  @DisplayName("loadUserByUsername should throw UsernameNotFoundException when user is not found")
+  void loadUserByUsername_when_userNotFound() {
     when(userRepository.findByUsername("nonexistent")).thenReturn(null);
     assertThrows(
         UsernameNotFoundException.class, () -> userService.loadUserByUsername("nonexistent"));

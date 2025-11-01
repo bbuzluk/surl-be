@@ -9,13 +9,16 @@ import com.github.bbuzluk.surl.auth.data.AuthToken;
 import java.time.Duration;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.AuthenticationException;
 
+@ExtendWith(MockitoExtension.class)
 class AuthServiceTest {
   AuthService authService;
   @Mock AuthTokenService authTokenService;
@@ -23,13 +26,13 @@ class AuthServiceTest {
 
   @BeforeEach
   void setUp() {
-    MockitoAnnotations.openMocks(this);
     this.authService =
         new AuthService(Duration.ofSeconds(60), authTokenService, authenticationManager);
   }
 
   @Test
-  void login_shouldReturnAuthTokenWhenCorrectCredentials() {
+  @DisplayName("login should return AuthToken when correct credentials are provided")
+  void login_when_correctCredentials() {
     when(authTokenService.generate(any(), any())).thenReturn(new AuthToken("user", ""));
     when(authenticationManager.authenticate(any()))
         .thenReturn(authenticated("user", "password", List.of()));
@@ -41,7 +44,8 @@ class AuthServiceTest {
   }
 
   @Test
-  void login_shouldThrowAuthenticationExceptionWhenWrongCredentials() {
+  @DisplayName("login should throw AuthenticationException when wrong credentials are provided")
+  void login_when_wrongCredentials() {
     when(authenticationManager.authenticate(any())).thenThrow(BadCredentialsException.class);
     assertThrows(AuthenticationException.class, () -> authService.login("user", "wrongpassword"));
   }

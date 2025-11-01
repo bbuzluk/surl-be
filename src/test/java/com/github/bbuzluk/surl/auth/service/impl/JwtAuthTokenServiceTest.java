@@ -6,20 +6,23 @@ import com.github.bbuzluk.surl.auth.data.AuthToken;
 import java.time.Instant;
 import java.util.Date;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 class JwtAuthTokenServiceTest {
-
-  static final String JWT_SECRET = "54d95566390ff1414e6a383a7105f9a190b6d2e632d6ac76";
-
   JwtAuthTokenService jwtAuthTokenService;
 
   @BeforeEach
   void setUp() {
-    this.jwtAuthTokenService = new JwtAuthTokenService(JWT_SECRET);
+    jwtAuthTokenService =
+        new JwtAuthTokenService("54d95566390ff1414e6a383a7105f9a190b6d2e632d6ac76");
   }
 
   @Test
+  @DisplayName("generate should create a valid AuthToken")
   void generate() {
     Instant expiration = Instant.now().plusSeconds(180);
     AuthToken result = jwtAuthTokenService.generate("user", expiration);
@@ -29,6 +32,7 @@ class JwtAuthTokenServiceTest {
   }
 
   @Test
+  @DisplayName("isValid should return true for valid token and false for invalid token")
   void isValid() {
     Instant expiration = Instant.now().plusSeconds(180);
     AuthToken authToken = jwtAuthTokenService.generate("user", expiration);
@@ -37,6 +41,7 @@ class JwtAuthTokenServiceTest {
   }
 
   @Test
+  @DisplayName("get should return AuthToken for valid token and null for invalid token")
   void get() {
     Instant expiration = Instant.now().plusSeconds(180);
     AuthToken authToken = jwtAuthTokenService.generate("user", expiration);
@@ -51,7 +56,8 @@ class JwtAuthTokenServiceTest {
   }
 
   @Test
-  void get_shouldReturnAuthTokenWhenValidTokenProvided() {
+  @DisplayName("get should return AuthToken when valid token is provided")
+  void get_when_validTokenProvided() {
     Instant expiration = Instant.parse("9999-01-01T00:00:00Z");
     String token = jwtAuthTokenService.createJwtToken("user", Date.from(expiration));
     AuthToken fetchedToken = jwtAuthTokenService.get(token);
@@ -62,12 +68,14 @@ class JwtAuthTokenServiceTest {
   }
 
   @Test
-  void get_shouldReturnNullWhenTokenIsNull() {
+  @DisplayName("get should return null when token is null")
+  void get_when_tokenIsNull() {
     AuthToken fetchedToken = jwtAuthTokenService.get(null);
     assertNull(fetchedToken);
   }
 
   @Test
+  @DisplayName("invalidate should invalidate a valid token")
   void invalidate() {
     Instant expiration = Instant.now().plusSeconds(180);
     AuthToken authToken = jwtAuthTokenService.generate("user", expiration);
@@ -78,7 +86,8 @@ class JwtAuthTokenServiceTest {
   }
 
   @Test
-  void invalidate_shouldHandleNonExistentTokenGracefully() {
+  @DisplayName("invalidate should handle non-existent token gracefully")
+  void invalidate_when_nonExistentToken() {
     String nonExistentToken = "non.existent.token";
     assertDoesNotThrow(() -> jwtAuthTokenService.invalidate(nonExistentToken));
   }
