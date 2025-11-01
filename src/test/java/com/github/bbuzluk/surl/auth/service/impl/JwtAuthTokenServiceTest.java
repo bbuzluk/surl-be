@@ -62,6 +62,12 @@ class JwtAuthTokenServiceTest {
   }
 
   @Test
+  void get_shouldReturnNullWhenTokenIsNull() {
+    AuthToken fetchedToken = jwtAuthTokenService.get(null);
+    assertNull(fetchedToken);
+  }
+
+  @Test
   void invalidate() {
     Instant expiration = Instant.now().plusSeconds(180);
     AuthToken authToken = jwtAuthTokenService.generate("user", expiration);

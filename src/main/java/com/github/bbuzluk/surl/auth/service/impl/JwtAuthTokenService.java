@@ -56,10 +56,10 @@ public class JwtAuthTokenService implements AuthTokenService {
 
   @Override
   public AuthToken get(String token) {
+    if (token == null) return null;
+
     AuthToken authToken = cache.getIfPresent(token);
-    if (authToken != null) {
-      return authToken;
-    }
+    if (authToken != null) return authToken;
 
     AuthToken parsedToken = parseJwtToken(token);
     if (parsedToken != null) {
