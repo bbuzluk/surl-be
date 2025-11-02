@@ -6,6 +6,6 @@ public class FailedUniqueShortCodeException extends RuntimeException {
   }
 
   public FailedUniqueShortCodeException() {
-    super("Failed to generate unique short code after multiple attempts");
+    this("Failed to generate unique short code after multiple attempts");
   }
 }
