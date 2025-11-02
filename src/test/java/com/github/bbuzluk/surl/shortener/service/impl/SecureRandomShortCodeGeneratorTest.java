@@ -2,6 +2,7 @@ package com.github.bbuzluk.surl.shortener.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -12,6 +13,7 @@ class SecureRandomShortCodeGeneratorTest {
   SecureRandomShortCodeGenerator generator = new SecureRandomShortCodeGenerator();
 
   @Test
+  @DisplayName("generate should return a 6-character alphanumeric string")
   void generate() {
     String shortCode = generator.generate();
     assertNotNull(shortCode);
