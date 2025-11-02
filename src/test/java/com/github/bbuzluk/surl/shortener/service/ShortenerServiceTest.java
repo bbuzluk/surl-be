@@ -8,6 +8,7 @@ import com.github.bbuzluk.surl.auth.service.UserContextService;
 import com.github.bbuzluk.surl.shortener.data.repository.ShortUrlRepository;
 import com.github.bbuzluk.surl.shortener.exception.FailedUniqueShortCodeException;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -29,6 +30,7 @@ class ShortenerServiceTest {
   }
 
   @Test
+  @DisplayName("createShortUrl should return a short code")
   void createShortUrl() {
     when(shortCodeGenerator.generate()).thenReturn("abc123");
     when(userContextService.getCurrentUsername()).thenReturn("testuser");
@@ -39,7 +41,9 @@ class ShortenerServiceTest {
   }
 
   @Test
-  void createShortUrl_MaxAttemptsExceeded() {
+  @DisplayName(
+      "createShortUrl should throw FailedUniqueShortCodeException when max attempts exceeded")
+  void createShortUrl_when_maxAttemptsExceeded() {
     when(shortCodeGenerator.generate()).thenReturn("abc123");
     when(userContextService.getCurrentUsername()).thenReturn("testuser");
     when(shortUrlRepository.save(any()))
