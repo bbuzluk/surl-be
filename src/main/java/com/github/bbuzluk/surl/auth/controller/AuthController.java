@@ -1,7 +1,7 @@
 package com.github.bbuzluk.surl.auth.controller;
 
-import com.github.bbuzluk.surl.auth.data.AuthToken;
-import com.github.bbuzluk.surl.auth.data.LoginRequest;
+import com.github.bbuzluk.surl.auth.data.model.AuthToken;
+import com.github.bbuzluk.surl.auth.data.model.LoginRequest;
 import com.github.bbuzluk.surl.auth.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

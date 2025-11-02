@@ -2,7 +2,7 @@ package com.github.bbuzluk.surl.auth.service;
 
 import static org.springframework.security.authentication.UsernamePasswordAuthenticationToken.unauthenticated;
 
-import com.github.bbuzluk.surl.auth.data.AuthToken;
+import com.github.bbuzluk.surl.auth.data.model.AuthToken;
 import java.time.Duration;
 import java.time.Instant;
 import org.springframework.beans.factory.annotation.Qualifier;

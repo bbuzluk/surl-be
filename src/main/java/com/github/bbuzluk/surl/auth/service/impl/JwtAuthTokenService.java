@@ -1,6 +1,6 @@
 package com.github.bbuzluk.surl.auth.service.impl;
 
-import com.github.bbuzluk.surl.auth.data.AuthToken;
+import com.github.bbuzluk.surl.auth.data.model.AuthToken;
 import com.github.bbuzluk.surl.auth.service.AuthTokenService;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;

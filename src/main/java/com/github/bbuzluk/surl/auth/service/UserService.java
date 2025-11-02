@@ -1,7 +1,7 @@
 package com.github.bbuzluk.surl.auth.service;
 
-import com.github.bbuzluk.surl.auth.data.dto.CreateUserRequest;
 import com.github.bbuzluk.surl.auth.data.entity.User;
+import com.github.bbuzluk.surl.auth.data.model.CreateUserRequest;
 import com.github.bbuzluk.surl.auth.data.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
