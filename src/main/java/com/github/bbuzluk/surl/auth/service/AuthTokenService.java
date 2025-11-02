@@ -1,6 +1,6 @@
 package com.github.bbuzluk.surl.auth.service;
 
-import com.github.bbuzluk.surl.auth.data.AuthToken;
+import com.github.bbuzluk.surl.auth.data.model.AuthToken;
 import java.time.Instant;
 
 public interface AuthTokenService {

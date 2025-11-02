@@ -1,6 +1,6 @@
 package com.github.bbuzluk.surl.auth.controller;
 
-import com.github.bbuzluk.surl.auth.data.dto.CreateUserRequest;
+import com.github.bbuzluk.surl.auth.data.model.CreateUserRequest;
 import com.github.bbuzluk.surl.auth.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

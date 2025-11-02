@@ -2,7 +2,7 @@ package com.github.bbuzluk.surl.auth.config;
 
 import static org.springframework.security.authentication.UsernamePasswordAuthenticationToken.*;
 
-import com.github.bbuzluk.surl.auth.data.AuthToken;
+import com.github.bbuzluk.surl.auth.data.model.AuthToken;
 import com.github.bbuzluk.surl.auth.service.AuthTokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

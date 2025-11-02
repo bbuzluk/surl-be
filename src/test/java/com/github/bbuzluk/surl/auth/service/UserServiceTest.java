@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.github.bbuzluk.surl.auth.data.dto.CreateUserRequest;
 import com.github.bbuzluk.surl.auth.data.entity.User;
+import com.github.bbuzluk.surl.auth.data.model.CreateUserRequest;
 import com.github.bbuzluk.surl.auth.data.repository.UserRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

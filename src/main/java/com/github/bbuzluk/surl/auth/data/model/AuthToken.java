@@ -1,4 +1,4 @@
-package com.github.bbuzluk.surl.auth.data;
+package com.github.bbuzluk.surl.auth.data.model;
 
 import static java.util.Objects.requireNonNull;
 
